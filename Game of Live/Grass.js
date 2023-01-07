@@ -1,5 +1,5 @@
 //Gras
-class Grass{
+class Grass extends LivingCreature{
     // erzeuge Objekte
     constructor(x, y){
         // eigenschaften
@@ -23,26 +23,6 @@ class Grass{
     }
 
     // Verhalten - Methoden
-    chooseField(character){
-        let found = [];
-        // Liste mit allen leeren Nachbarfelder
-        for(let i in this.directions){
-            // hole die Position
-            let pos = this.directions[i];
-            let x = pos[0];
-            let y = pos[1];
-            // Überprüfe die spielfeldgrenzen
-            if(x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length){
-                // schau in spielfeld matrix nach ob dort eine 0 gespeichert
-                if(matrix[y][x] == character){
-                    // leeres nachbarfeld gefunden
-                    found.push(pos);
-                }
-            }
-        }
-
-        return found;
-    }
 
     mul(){
         this.multiply++;
