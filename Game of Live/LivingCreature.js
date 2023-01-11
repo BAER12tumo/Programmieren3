@@ -1,6 +1,5 @@
 // Superklasse
 class LivingCreature{
-
     // erzeuge Objekte
     constructor(x, y){
         // eigenschaften

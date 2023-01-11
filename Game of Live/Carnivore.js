@@ -2,7 +2,7 @@
 class Carnivore extends LivingCreature{
     
     constructor(x,y){
-        super()
+        super(x, y)
         // Vermehrungscounter
         this.counter = 0;
     }

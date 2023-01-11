@@ -2,7 +2,7 @@
 class Grass extends LivingCreature{
     // erzeuge Objekte
     constructor(x, y){
-        super()
+        super(x,y)
         // rundenzähler
         this.multiply = 0;
     }
@@ -14,6 +14,7 @@ class Grass extends LivingCreature{
         // Logik Vermehrung
         if(this.multiply > 5){
             // jetzt darf sich vermehrt werden
+            
             // gibt es leere nachbarfelder - chooseField(0)
             let emptyFields = this.chooseCell(0);
             // console.log(emptyFields)
