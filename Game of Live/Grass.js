@@ -2,24 +2,9 @@
 class Grass extends LivingCreature{
     // erzeuge Objekte
     constructor(x, y){
-        // eigenschaften
-        // farbe 
-        // position
-        this.x = x;
-        this.y = y;
+        super()
         // rundenzähler
         this.multiply = 0;
-        // sicht auf die nachbarfelder
-        this.directions = [
-                [this.x - 1 , this.y - 1],
-                [this.x     , this.y - 1],
-                [this.x + 1 , this.y - 1],
-                [this.x - 1 , this.y    ],
-                [this.x + 1 , this.y    ],
-                [this.x - 1 , this.y + 1],
-                [this.x     , this.y + 1],
-                [this.x + 1 , this.y + 1]
-        ];
     }
 
     // Verhalten - Methoden
@@ -30,7 +15,7 @@ class Grass extends LivingCreature{
         if(this.multiply > 5){
             // jetzt darf sich vermehrt werden
             // gibt es leere nachbarfelder - chooseField(0)
-            let emptyFields = this.chooseField(0);
+            let emptyFields = this.chooseCell(0);
             // console.log(emptyFields)
             // wenn das Arry nicht leer ist
             if(emptyFields.length > 0){

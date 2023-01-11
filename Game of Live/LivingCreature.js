@@ -1,19 +1,24 @@
 // Superklasse
 class LivingCreature{
 
-    constructor (x, y){
+    // erzeuge Objekte
+    constructor(x, y){
+        // eigenschaften
+        // farbe 
+        // position
         this.x = x;
         this.y = y;
+        // sicht auf die nachbarfelder
         this.directions = [
-            [this.x - 1 , this.y - 1],
-            [this.x     , this.y - 1],
-            [this.x + 1 , this.y - 1],
-            [this.x - 1 , this.y    ],
-            [this.x + 1 , this.y    ],
-            [this.x - 1 , this.y + 1],
-            [this.x     , this.y + 1],
-            [this.x + 1 , this.y + 1]
-    ];
+                [this.x - 1 , this.y - 1],
+                [this.x     , this.y - 1],
+                [this.x + 1 , this.y - 1],
+                [this.x - 1 , this.y    ],
+                [this.x + 1 , this.y    ],
+                [this.x - 1 , this.y + 1],
+                [this.x     , this.y + 1],
+                [this.x + 1 , this.y + 1]
+        ];
     }
 
     chooseCell(character){
@@ -36,4 +41,6 @@ class LivingCreature{
 
         return found;
     }
+    
 }
+
