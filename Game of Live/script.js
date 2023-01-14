@@ -1,3 +1,10 @@
+const LivingCreature = require("./LivingCreature");
+const Grass = require("./Grass");
+const Mouse = require("./Mouse");
+const Mushroom = require("./Mushroom");
+const Carnivore = require("./Carnivore");
+const Grazer = require("./Grazer")
+
 // Objekterstellung - Source Programmablauf
 let matrix = [
     [0, 0, 1, 0, 0],

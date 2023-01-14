@@ -1,5 +1,5 @@
 //Fleischfresser
-class Carnivore extends LivingCreature{
+module.exports = class Carnivore extends LivingCreature{
     
     constructor(x,y){
         super(x, y)

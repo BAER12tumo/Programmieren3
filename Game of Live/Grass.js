@@ -1,5 +1,5 @@
 //Gras
-class Grass extends LivingCreature{
+module.exports = class Grass extends LivingCreature{
     // erzeuge Objekte
     constructor(x, y){
         super(x,y)

@@ -1,5 +1,5 @@
 //Grasfresser
-class Grazer extends LivingCreature{
+module.exports = class Grazer extends LivingCreature{
 
     constructor(x,y){
         super(x,y)

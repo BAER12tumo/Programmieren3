@@ -1,5 +1,5 @@
 // Pilze
-class Mushroom{
+module.exports = class Mushroom{
     constructor(x,y){
         // Position
         this.x = x;

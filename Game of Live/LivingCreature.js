@@ -1,5 +1,5 @@
 // Superklasse
-class LivingCreature{
+module.exports = class LivingCreature{
     // erzeuge Objekte
     constructor(x, y){
         // eigenschaften

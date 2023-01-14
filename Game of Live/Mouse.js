@@ -1,4 +1,4 @@
-class Mouse extends LivingCreature{
+module.exports = class Mouse extends LivingCreature{
     constructor(x,y){
         super(x,y)
         // Vermehrungscounter
