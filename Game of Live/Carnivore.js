@@ -1,4 +1,5 @@
 //Fleischfresser
+const LivingCreature = require("./LivingCreature");
 module.exports = class Carnivore extends LivingCreature{
     
     constructor(x,y){
@@ -29,7 +30,7 @@ module.exports = class Carnivore extends LivingCreature{
         
         let grazerFields = this.chooseCell(2);
         if(grazerFields.length > 0){
-            let theChoosenField = random(grazerFields);
+            let theChoosenField = grazerFields[Math.floor(Math.random() * grazerFields.length)];
             let newX = theChoosenField[0];
             let newY = theChoosenField[1];
 
@@ -68,7 +69,7 @@ module.exports = class Carnivore extends LivingCreature{
     move(){
         let emptyFields = this.chooseCell(0);
         if(emptyFields.length > 0){
-            let theChoosenField = random(emptyFields);
+            let theChoosenField = emptyFields[Math.floor(Math.random() * emptyFields.length)];
             let newX = theChoosenField[0];
             let newY = theChoosenField[1];
             // spielfeld aktualisieren mit der neuen Position
@@ -104,7 +105,7 @@ module.exports = class Carnivore extends LivingCreature{
     mul(){
         let emptyField = this.chooseCell(0);
         if(emptyField.length > 0){
-            let ChoosenField = random(emptyField);
+            let ChoosenField = emptyField[Math.floor(Math.random() * emptyField.length)];
             let newX = ChoosenField[0];
             let newY = ChoosenField[1];
             // die Neue Position

@@ -1,4 +1,5 @@
 //Grasfresser
+const LivingCreature = require("./LivingCreature");
 module.exports = class Grazer extends LivingCreature{
 
     constructor(x,y){
@@ -31,7 +32,7 @@ module.exports = class Grazer extends LivingCreature{
         
         let grassFields = this.chooseCell(1);
         if(grassFields.length > 0){
-            let theChoosenField = random(grassFields);
+            let theChoosenField = grassFields[Math.floor(Math.random() * grassFields.length)];
             let newX = theChoosenField[0];
             let newY = theChoosenField[1];
             // alte Position
@@ -66,7 +67,7 @@ module.exports = class Grazer extends LivingCreature{
     move(){
         let emptyFields = this.chooseCell(0);
         if(emptyFields.length > 0){
-            let theChoosenField = random(emptyFields);
+            let theChoosenField = emptyFields[Math.floor(Math.random() * emptyFields.length)];
             let newX = theChoosenField[0];
             let newY = theChoosenField[1];
             // alte Position
@@ -104,7 +105,7 @@ module.exports = class Grazer extends LivingCreature{
     mul(){
         let emptyFields = this.chooseCell(0);
         if(emptyFields.length > 0){
-            let theChoosenField = random(emptyFields);
+            let theChoosenField = emptyFields[Math.floor(Math.random() * emptyFields.length)];
             let newX = theChoosenField[0];
             let newY = theChoosenField[1];
             // die Neue Position

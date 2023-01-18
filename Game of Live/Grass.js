@@ -1,4 +1,5 @@
 //Gras
+const LivingCreature = require("./LivingCreature");
 module.exports = class Grass extends LivingCreature{
     // erzeuge Objekte
     constructor(x, y){
@@ -21,7 +22,7 @@ module.exports = class Grass extends LivingCreature{
             // wenn das Arry nicht leer ist
             if(emptyFields.length > 0){
                 // dann zufällige Position eines NB-Field aus der Liste 
-                let theChoosenField = random(emptyFields);
+                let theChoosenField = emptyFields[Math.floor(Math.random() * emptyFields.length)];
                 //[x,y]
                 let newX = theChoosenField[0];
                 let newY = theChoosenField[1];

@@ -1,4 +1,5 @@
 // Pilze
+const LivingCreature = require("./LivingCreature");
 module.exports = class Mushroom{
     constructor(x,y){
         // Position
@@ -31,7 +32,7 @@ module.exports = class Mushroom{
     mul(){
         this.newDirections();
         if(this.directions.length > 0){
-            let chooseField = random(this.directions);
+            let chooseField = this.directions[Math.floor(Math.random() * this.directions.length)];
             let newX = chooseField[0];
             let newY = chooseField[1];
             // die Neue Position

@@ -1,3 +1,4 @@
+const LivingCreature = require("./LivingCreature");
 module.exports = class Mouse extends LivingCreature{
     constructor(x,y){
         super(x,y)
@@ -105,7 +106,7 @@ module.exports = class Mouse extends LivingCreature{
     mul(){
         let emptyField = this.chooseCell(0);
         if(emptyField.length > 0){
-            let ChoosenField = random(emptyField);
+            let ChoosenField = emptyFields[Math.floor(Math.random() * emptyFields.length)];
             let newX = ChoosenField[0];
             let newY = ChoosenField[1];
             // die Neue Position

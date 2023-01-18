@@ -1,5 +1,11 @@
+const Grass = require("./Grass");
+const Mouse = require("./Mouse");
+const Mushroom = require("./Mushroom");
+const Carnivore = require("./Carnivore");
+const Grazer = require("./Grazer");
+
 // Objekterstellung - Source Programmablauf
-let matrix = [
+matrix = [
     [0, 0, 1, 0, 0],
     [1, 0, 2, 0, 0],
     [0, 1, 0, 2, 0],
@@ -9,18 +15,17 @@ let matrix = [
     [1, 1, 0, 0, 4]
 ];
 
-let side = 10;
-let fr = 5;
 
 // Array für Lebewesen
-let grassArr = [];
-let grazerArr = [];
-let carnivoreArr = [];
-let mushroomArr = [];
-let mouseArr = [];
+grassArr = [];
+grazerArr = [];
+carnivoreArr = [];
+mushroomArr = [];
+mouseArr = [];
 
-let mausPos = [[20,45], [30,20], [49,1]];
-let grazerPos = [[13,50], [20, 42], [70, 80], [29, 47]];
+mausPos = [[20,45], [30,20], [49,1]];
+grazerPos = [[13,50], [20, 42], [70, 80], [29, 47]];
+
 
 // zufällige Matrix erstellen
 function getRandomMatrix(cols, rows){
@@ -30,8 +35,7 @@ function getRandomMatrix(cols, rows){
         let rowArray = [];
         matrix[y] = rowArray;
         for(let x = 0; x < cols; x++){
-            let g = random(0,1);
-            g = Math.round(g);
+            let g = Math.floor(Math.random() * 5);
             matrix[y][x] = g;
         }
     }
@@ -87,27 +91,9 @@ function getRandomMatrix(cols, rows){
     return matrix;
 }
 
+function initGame(){
 
-function setup(){
-
-    frameRate(fr);
-
-    matrix = getRandomMatrix(100, 100);
-
-    // initialisierung Spielfeldes
-    createCanvas(matrix[0].length * side +1, matrix.length * side +1);
-    background('#acacac');
-
-    
-    // Test - ein Grassobjekt erzeugen
-    // let grassObj1 = new Grass(0, 1);
-    // let emptyFields = grassObj1.chooseField(0);
-    // console.log(emptyFields);
-
-    // Test - ein Grassfresser (Grazer) erzeugen
-    // let grazerObj = new Grazer(2,1);
-    // let grassFields = grazerObj.chooseCell(1);
-    // console.log(grassFields)
+    // matrix = getRandomMatrix(100, 100);
 
     // matrix - für ein Grassobjekt
 
@@ -131,14 +117,15 @@ function setup(){
         }
         }
     }
-
-    // console.log(grassArr.length);
 }
 
-function draw(){
 
+
+function updateGame (){
     // Lebewesen
     // welche leeres Nachbarfelder hat jedes Grassobjekt
+    console.log(matrix)
+    
     for(let i in grassArr){
         let grassObj = grassArr[i];
         grassObj.mul();
@@ -163,26 +150,9 @@ function draw(){
         let mouseObj = mouseArr[i];
         mouseObj.eat();
     }
-
-    // Zeichen des Spielfeldes
-    for(let y = 0; y < matrix.length; y++){
-        for(let x = 0; x < matrix[y].length; x++ ){
-            // farbe festlegen
-            if(matrix[y][x] == 0){
-                fill("white");
-            }else if(matrix[y][x] == 1){
-                fill("green");
-            }else if(matrix[y][x] == 2){
-                fill(247, 255, 28);
-            }else if(matrix[y][x] == 3){
-                fill("red");
-            }else if(matrix[y][x] == 4){
-                fill("grey");
-            }else if(matrix[y][x] == 5){
-                fill(19,36,161);
-            }
-            //zeichne rect
-            rect(x * side, y * side, side, side)
-        }
-    }
 }
+
+initGame();
+setInterval(()=>{
+    updateGame()
+}, 100);
