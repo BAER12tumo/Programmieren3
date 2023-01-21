@@ -31,7 +31,7 @@ module.exports = class Mouse extends LivingCreature{
         
         let mushroomFields = this.chooseCell(4);
         if(mushroomFields.length > 0){
-            let theChoosenField = random(mushroomFields);
+            let theChoosenField = mushroomFields[Math.floor(Math.random() * mushroomFields.length)];
             let newX = theChoosenField[0];
             let newY = theChoosenField[1];
 
@@ -70,7 +70,7 @@ module.exports = class Mouse extends LivingCreature{
     move(){
         let emptyFields = this.chooseCell(0);
         if(emptyFields.length > 0){
-            let theChoosenField = random(emptyFields);
+            let theChoosenField = emptyFields[Math.floor(Math.random() * emptyFields.length)];
             let newX = theChoosenField[0];
             let newY = theChoosenField[1];
             // spielfeld aktualisieren mit der neuen Position
@@ -106,7 +106,7 @@ module.exports = class Mouse extends LivingCreature{
     mul(){
         let emptyField = this.chooseCell(0);
         if(emptyField.length > 0){
-            let ChoosenField = emptyFields[Math.floor(Math.random() * emptyFields.length)];
+            let ChoosenField = emptyField[Math.floor(Math.random() * emptyField.length)];
             let newX = ChoosenField[0];
             let newY = ChoosenField[1];
             // die Neue Position

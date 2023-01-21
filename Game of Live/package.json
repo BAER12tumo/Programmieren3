@@ -1,0 +1,12 @@
+{
+  "name": "gameoflive",
+  "version": "1.0.0",
+  "description": "Spiel des Lebens",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Bruno",
+  "license": "ISC"
+}

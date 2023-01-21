@@ -24,7 +24,7 @@ mushroomArr = [];
 mouseArr = [];
 
 mausPos = [[20,45], [30,20], [49,1]];
-grazerPos = [[13,50], [20, 42], [70, 80], [29, 47]];
+grazerPos = [[12,25], [20, 42], [35, 40], [29, 47]];
 
 
 // zufällige Matrix erstellen
@@ -35,33 +35,44 @@ function getRandomMatrix(cols, rows){
         let rowArray = [];
         matrix[y] = rowArray;
         for(let x = 0; x < cols; x++){
-            let g = Math.floor(Math.random() * 5);
+            let g = Math.floor(Math.random()* 6);
             matrix[y][x] = g;
         }
     }
 
     // Fleischfresser -- max 60
-    for (let i = 0; i <= 60; i++){
-        let y = i+13;
-        if(y >= 50) y = 43;
-        let x = i-3;
-        if(x >= 50) x = 20
+    for (let i = 0; i <= 30; i++){
+        let y = i+6;
+        let x = 0
+        if(y >= 25){ 
+            y = 22;
+            x = i-3;
+        }
+        
+        if(x >= 25){ 
+            x = 10
+        }
 
         matrix[y][x] = 3;
     }
 
     // Grasfresser - max 80
-    for (let i = 0; i <= 80; i++){
+    for (let i = 0; i <= 40; i++){
         let y = i*2;
-        if(y >= 50) y = 43;
-        let x = i +16;
-        if(x >= 50) x = 20
+        let x = 0
+        if(y >= 25){
+           y = 22;
+            let x = i +8; 
+        } 
+        if(x >= 25){
+            x = 10
+        } 
 
         matrix[y][x] = 2;
     }
 
     //Pilz 60
-    for(let i = 0; i <= 60; i++){
+    for(let i = 0; i <= 30; i++){
         let y = i;
         let x = i;
         matrix[y][x] = 4;
@@ -83,7 +94,7 @@ function getRandomMatrix(cols, rows){
     }
 
     // Maus - max 48
-    for(let i = 0; i <= 48; i++){
+    for(let i = 0; i <= 24; i++){
         let y = i*2;
         let x = i*2;
         matrix[y][x] = 5;
@@ -93,7 +104,7 @@ function getRandomMatrix(cols, rows){
 
 function initGame(){
 
-    // matrix = getRandomMatrix(100, 100);
+    matrix = getRandomMatrix(50, 50);
 
     // matrix - für ein Grassobjekt
 
@@ -155,4 +166,4 @@ function updateGame (){
 initGame();
 setInterval(()=>{
     updateGame()
-}, 100);
+}, 1000);
