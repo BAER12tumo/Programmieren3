@@ -1,3 +1,5 @@
+const express = require("express");
+const app = express();
 const Grass = require("./Grass");
 const Mouse = require("./Mouse");
 const Mushroom = require("./Mushroom");
@@ -167,3 +169,9 @@ initGame();
 setInterval(()=>{
     updateGame()
 }, 1000);
+
+app.listen(3000, function(){
+    console.log("Mein Server läuft auf Port 3000")
+    // game start
+    
+});
