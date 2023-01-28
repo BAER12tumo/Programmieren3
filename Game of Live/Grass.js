@@ -13,7 +13,7 @@ module.exports = class Grass extends LivingCreature{
     mul(){
         this.multiply++;
         // Logik Vermehrung
-        if(this.multiply > 5){
+        if(this.multiply > 4){
             // jetzt darf sich vermehrt werden
             
             // gibt es leere nachbarfelder - chooseField(0)

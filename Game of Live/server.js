@@ -1,5 +1,15 @@
 const express = require("express");
 const app = express();
+
+let httpServer = require("http").Server(app);
+let {Server} = require("socket.io");
+const io = new Server(httpServer);
+
+app.use(express.static("./"));
+
+app.get("./", function(req, res){
+    res.redirect("index.html");
+})
 const Grass = require("./Grass");
 const Mouse = require("./Mouse");
 const Mushroom = require("./Mushroom");
@@ -25,6 +35,8 @@ carnivoreArr = [];
 mushroomArr = [];
 mouseArr = [];
 
+let isRainig = false;
+
 mausPos = [[20,45], [30,20], [49,1]];
 grazerPos = [[12,25], [20, 42], [35, 40], [29, 47]];
 
@@ -42,8 +54,8 @@ function getRandomMatrix(cols, rows){
         }
     }
 
-    // Fleischfresser -- max 60
-    for (let i = 0; i <= 30; i++){
+    // Fleischfresser -- max 25
+    for (let i = 0; i <= 10; i++){
         let y = i+6;
         let x = 0
         if(y >= 25){ 
@@ -58,8 +70,8 @@ function getRandomMatrix(cols, rows){
         matrix[y][x] = 3;
     }
 
-    // Grasfresser - max 80
-    for (let i = 0; i <= 40; i++){
+    // Grasfresser - max 40
+    for (let i = 0; i <= 30; i++){
         let y = i*2;
         let x = 0
         if(y >= 25){
@@ -73,11 +85,18 @@ function getRandomMatrix(cols, rows){
         matrix[y][x] = 2;
     }
 
-    //Pilz 60
-    for(let i = 0; i <= 30; i++){
+    //Pilz 30
+    for(let i = 0; i <= 40; i++){
         let y = i;
         let x = i;
         matrix[y][x] = 4;
+    }
+
+    //Gras 30
+    for(let i = 0; i <= 40; i++){
+        let y = i;
+        let x = i;
+        matrix[y][x] = 1;
     }
 
     // Grasfresser
@@ -137,7 +156,7 @@ function initGame(){
 function updateGame (){
     // Lebewesen
     // welche leeres Nachbarfelder hat jedes Grassobjekt
-    console.log(matrix)
+    
     
     for(let i in grassArr){
         let grassObj = grassArr[i];
@@ -163,15 +182,29 @@ function updateGame (){
         let mouseObj = mouseArr[i];
         mouseObj.eat();
     }
+    console.log("send matrix");
+    io.emit("send matrix", matrix);
 }
 
-initGame();
-setInterval(()=>{
-    updateGame()
-}, 1000);
+io.on("connection", function(){
+    console.log("client ws connection established...");
+    //client ha nachricht geschickt
+    io.on("kill", function(data){
+        console.log("client wants to kill sth", data);
+        grassArr = [];
+    })
+})
 
-app.listen(3000, function(){
+httpServer.listen(3000, function(){
     console.log("Mein Server läuft auf Port 3000")
     // game start
-    
+    initGame();
+    setInterval(function (){
+        updateGame()
+    }, 1000);
+    setInterval(function(){
+        isRainig= !isRainig;
+        io.emit("isRaining", isRainig);
+        console.log("Regnet es: ", isRainig);
+    }, 5000);
 });
