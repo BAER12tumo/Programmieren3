@@ -1,7 +1,7 @@
 let matrixSize = 50;
 let side = 10;
-
 let socket = io();
+let isRainig = true;
 
 function main() {
 
@@ -11,21 +11,28 @@ function main() {
 
     let myKillButton = document.getElementById("killButton");
     myKillButton.addEventListener("click", killHandler);
-}
 
-function rainHandler(data){
-    console.log("Regnet es: ", data);
-    isRaining = data;
-}
+    let myNewGameButton = document.getElementById("newGame");
+    myNewGameButton.addEventListener("click", newGameHandler);
 
-function killHandler(){
-    console.log("Kill Button geklickt...");
-    // send webSocket Nachricht an Server
-    socket.emit("kill", 10)
+    function rainHandler(data) {
+        console.log("Regnet es: ", data);
+        isRaining = data;
+    }
+
+    function killHandler() {
+        console.log("Kill Button geklickt...");
+        // send webSocket Nachricht an Server
+        socket.emit("kill", 10);
+    }
+
+    function newGameHandler(){
+        console.log("neues Spiel");
+        socket.emit("newGame", 25);
+    }
 }
 
 function setup() {
-
     // initialisierung Spielfeldes
     createCanvas(matrixSize * side + 1, matrixSize * side + 1);
     background('#acacac');
@@ -41,6 +48,9 @@ function drawMatrix(matrix) {
                 fill("white");
             } else if (matrix[y][x] == 1) {
                 fill("green");
+                if (isRaining == true) {
+                    fill("blue");
+                }
             } else if (matrix[y][x] == 2) {
                 fill(247, 255, 28);
             } else if (matrix[y][x] == 3) {
